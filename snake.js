@@ -1,9 +1,3 @@
-// Jogo da Cobra (Snake Game)
-// Autor: Jan Bodnar
-// Adaptado por: Gilson Pereira
-// Código fonte original: http://zetcode.com/javascript/snake/
-
-
 // Declaração de variáveis e constantes
 
 var tela;
@@ -47,6 +41,11 @@ iniciar(); // Chama função inicial do jogo
 // Definição das funções
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+function score() {
+    ctx.fillStyle = "white";
+    ctx.font = "10px Verdana"
+    ctx.fillText("Score: " + pontos, canvas.width-50, 10);
 }
 
 function reset() {
@@ -168,7 +167,7 @@ function mover() {
     if (paraBaixo) {
         y[0] += TAMANHO_PONTO;
     }
-}    
+} 
 
 function fazerDesenho() {
     ctx.clearRect(0, 0, C_LARGURA, C_ALTURA);
@@ -190,6 +189,7 @@ function fazerDesenho() {
 }
 
 function fimDeJogo() {
+    document.getElementById("butao").style.visibility="visible"
     ctx.fillStyle = "white";
     ctx.textBaseline = "middle"; 
     ctx.textAlign = "center"; 
@@ -201,8 +201,8 @@ function fimDeJogo() {
     } else {
         ctx.fillText("🤩Fim de Jogo🤩", C_LARGURA/2, C_ALTURA/2);
     }
-    sleep(1000).then(() => {
-    var nomeJogador = prompt("Qual seu nome:");
+    sleep(500).then(() => {
+    var nomeJogador = document.getElementById("butão")
     ranking.push(nomeJogador)
     var j = 0
     for(i=0;i<ranking.length;i++){
@@ -212,6 +212,7 @@ function fimDeJogo() {
     console.log('-------------------------------------');
     });
     noJogo = false;
+    
 }
 
 function verificarTecla(e) {
